@@ -15,7 +15,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def prefix_changed(self, prefix: str):
         prefix = prefix.lower().replace('.', '').replace('-', '').replace('_', '')
-        self.ui.outputPasswordLabel.setText(prefix + "#314689_Rokku-kaijo")
+        self.ui.outputPasswordLabel.setText(prefix + "")
 
     def copy(self):
         password = self.ui.outputPasswordLabel.text()
