@@ -17,6 +17,6 @@ class MainWindow(QtWidgets.QMainWindow):
         prefix = replace_characters(prefix.lower(), r'[^a-zA-Z0-9]', '')
         self.ui.outputPasswordLabel.setText(prefix + "")
 
-    def copy_password(self):
+    def copy_password(self) -> None:
         password = self.ui.outputPasswordLabel.text()
         QtWidgets.QApplication.clipboard().setText(password)
