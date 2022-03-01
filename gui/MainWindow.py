@@ -1,5 +1,6 @@
 from PyQt5 import QtWidgets
 from gui.forms.MainWindow import Ui_MainWindow
+from common.helpers import replace_characters
 
 
 class MainWindow(QtWidgets.QMainWindow):
@@ -8,15 +9,14 @@ class MainWindow(QtWidgets.QMainWindow):
 
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        self.ui.prefixLineEdit.textChanged.connect(self.prefix_changed)
-        self.ui.copyButton.clicked.connect(self.copy)
+        self.ui.prefixLineEdit.textChanged.connect(self.update_password)
+        self.ui.copyButton.clicked.connect(self.copy_password)
+        self.update_password("")
 
-        self.prefix_changed("")
+    def update_password(self, prefix: str) -> None:
+        prefix = replace_characters(prefix.lower(), r'[^a-zA-Z0-9]', '')
+        self.ui.outputPasswordLabel.setText(prefix + "")
 
-    def prefix_changed(self, prefix: str):
-        prefix = prefix.lower().replace('.', '').replace('-', '').replace('_', '')
-        self.ui.outputPasswordLabel.setText(prefix + "#314689_Rokku-kaijo")
-
-    def copy(self):
+    def copy_password(self) -> None:
         password = self.ui.outputPasswordLabel.text()
         QtWidgets.QApplication.clipboard().setText(password)
