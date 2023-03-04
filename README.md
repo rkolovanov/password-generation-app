@@ -1,3 +1,3 @@
 # password-generator
 
-Генератор паролей.
+Graphical application for generating passwords.
